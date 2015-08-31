@@ -10,6 +10,8 @@ var BinaryStream = module.exports = function(queueName, options, pubsub) {
 util.inherits(BinaryStream, Writable);
 
 BinaryStream.prototype._write = function(data, encoding, callback) {
-  this._pubsub.publish(this.queueName, data);
+  if(this.enabled) {
+    this._pubsub.publish(this.queueName, data);
+  }
   callback();
 };

@@ -12,7 +12,9 @@ util.inherits(ObjectStream, Writable);
 
 ObjectStream.prototype._write = function(data, encoding, callback) {
   var json = ObjectStream.format(this.queueName, data);
-  this._pubsub.publish(this.queueName, json );
+  if(this.enabled) {
+    this._pubsub.publish(this.queueName, json );
+  }
   callback();
 };
 
