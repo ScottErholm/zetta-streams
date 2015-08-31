@@ -6,6 +6,7 @@ var ObjectStream = module.exports = function(queueName, options, pubsub) {
   this._writableState.objectMode = true;
   this.queueName = queueName;
   this._pubsub = pubsub;
+  this.enabled = true;
 };
 util.inherits(ObjectStream, Writable);
 
